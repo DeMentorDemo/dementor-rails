@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="Rails dementor-rails: test" uuid="5e3185f3-afa5-4266-b6d1-eb59f8d86e88">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost/dementor</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Rails dementor-rails: development" uuid="385d5e4a-ba9d-47b6-9656-e5a9a37176ab">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost/dementor</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Rails dementor-rails: production" uuid="9da07449-0ab3-4c4b-9e0d-5f64485c5cfc">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/dementor</jdbc-url>
+    </data-source>
+  </component>
+</project>
