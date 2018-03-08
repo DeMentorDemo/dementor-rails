@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authenticate_request!, only: [:show]
+
   def create
     @user = User.new user_params
     if @user.save
@@ -8,9 +10,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    render json: @current_user.to_json
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:email, :first_name, :last_name, :password, :password_confirmation)
   end
 end

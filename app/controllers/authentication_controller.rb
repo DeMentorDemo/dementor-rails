@@ -2,7 +2,14 @@ class AuthenticationController < ApplicationController
   def login
     user = User.find_for_database_authentication(email: params[:email])
     if user&.valid_password?(params[:password])
-      render json: payload(user)
+      user.sign_in_count += 1
+      user.last_sign_in_at = user.current_sign_in_at
+      user.current_sign_in_at = Time.now
+      if user.save
+        render json: payload(user)
+      else
+        render json: {errors: user.errors}, status: :unauthorized
+      end
     else
       render json: {errors: ['Invalid Username/Password']}, status: :unauthorized
     end

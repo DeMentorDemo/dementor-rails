@@ -8,6 +8,8 @@ describe UsersController, type: :controller do
         users_count = User.count
         user = build(:user)
         post :create, params: {user: {email: user.email,
+                                      first_name: user.first_name,
+                                      last_name: user.last_name,
                                       password: user.password,
                                       password_confirmation: user.password_confirmation}}
         expect(User.count - users_count).to eq(1)
