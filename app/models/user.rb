@@ -1,10 +1,18 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  validates :first_name, presence: true
-  validates :last_name, presence: true
+  validates_presence_of :first_name, :last_name
+
+  scope :contacts, -> (user) {where.not(id: user.id)}
 
   def name
     "#{first_name} #{last_name}"
+  end
+
+  def sign_in
+    self.sign_in_count += 1
+    self.last_sign_in_at = current_sign_in_at
+    self.current_sign_in_at = Time.now
+    save
   end
 end
