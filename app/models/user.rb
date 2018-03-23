@@ -1,6 +1,7 @@
 class User < ApplicationRecord
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable,
+         :validatable
+
   validates_presence_of :first_name, :last_name
 
   scope :contacts, -> (user) {where.not(id: user.id)}

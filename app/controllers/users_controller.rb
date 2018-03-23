@@ -18,7 +18,11 @@ class UsersController < ApplicationController
 
   # GET /users/show
   def show
-    render json: @current_user.to_json
+    if params[:id]
+      render json: User.find(params[:id].to_i).to_json
+    else
+      render json: @current_user.to_json
+    end
   end
 
   private
