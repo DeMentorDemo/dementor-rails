@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_request!, only: [:index, :show]
+  before_action :authenticate_request!, except: [:create]
 
   # GET users
   def index
@@ -16,13 +16,14 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/show
+  # GET users/current_user
+  def current_user
+    render json: @current_user.to_json
+  end
+
+  # GET /users/show/:id
   def show
-    if params[:id]
-      render json: User.find(params[:id].to_i).to_json
-    else
-      render json: @current_user.to_json
-    end
+    render json: User.find(params[:id].to_i).to_json
   end
 
   private

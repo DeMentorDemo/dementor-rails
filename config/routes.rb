@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   # Users
   post 'users/signup' => 'users#create'
-  get 'users/show' => 'users#show'
+  get 'users/current_user' => 'users#current_user'
   get 'users/show/:id' => 'users#show'
   get 'users' => 'users#index'
 end
