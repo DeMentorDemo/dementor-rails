@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   post 'auth/login' => 'authentication#login'
 
   # Users
-  post 'users/signup' => 'users#create'
+  post 'users/sign_up' => 'users#create'
   get 'users/current_user' => 'users#current_user'
   get 'users/show/:id' => 'users#show'
   get 'users' => 'users#index'

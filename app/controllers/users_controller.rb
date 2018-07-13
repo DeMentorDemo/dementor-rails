@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     render json: User.contacts(@current_user).to_json, status: :ok
   end
 
-  # POST users/signup
+  # POST users/sign_up
   def create
     @user = User.new user_params
     if @user.save
