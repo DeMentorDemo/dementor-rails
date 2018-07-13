@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
   validates_presence_of :first_name, :last_name
 
-  scope :contacts, -> (user) {where.not(id: user.id)}
+  scope :contacts, ->(user) { where.not(id: user.id) }
 
   def name
     "#{first_name} #{last_name}"

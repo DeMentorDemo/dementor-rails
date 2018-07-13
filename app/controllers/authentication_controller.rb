@@ -8,7 +8,7 @@ class AuthenticationController < ApplicationController
       user.sign_in
       render json: token(user)
     else
-      render json: {errors: ['Invalid Username/Password']}, status: :unauthorized
+      render json: { errors: ['Invalid Username/Password'] }, status: :unauthorized
     end
   end
 
@@ -19,6 +19,6 @@ class AuthenticationController < ApplicationController
   def token(user)
     return unless user&.id
     exp = EXPIRATION_DAYS.days.from_now.to_i
-    {auth_token: JsonWebToken.encode(user_id: user.id, exp: exp)}
+    { auth_token: JsonWebToken.encode(user_id: user.id, exp: exp) }
   end
 end

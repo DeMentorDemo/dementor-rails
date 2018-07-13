@@ -10,9 +10,6 @@ AllCops:
 Documentation:
   Enabled: false
 
-Layout/SpaceInsideHashLiteralBraces:
-  Enabled: false
-
 Naming/FileName:
   Exclude:
     - Gemfile
@@ -20,6 +17,10 @@ Naming/FileName:
 Metrics/MethodLength:
   Exclude:
     - db/migrate/**
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
 
 Metrics/LineLength:
   Max: 120
