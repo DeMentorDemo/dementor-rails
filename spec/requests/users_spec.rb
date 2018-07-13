@@ -10,11 +10,11 @@ describe 'Users', type: :request do
     JsonWebToken.encode(user_id: saved_user.id, exp: exp)
   end
 
-  describe 'POST /users/signup' do
+  describe 'POST /users/sign_up' do
     context 'with valid attributes' do
       it 'should create new user' do
         users_count = User.count
-        post '/users/signup', params: { user: { email: user.email,
+        post '/users/sign_up', params: { user: { email: user.email,
                                                 first_name: user.first_name,
                                                 last_name: user.last_name,
                                                 password: user.password,
