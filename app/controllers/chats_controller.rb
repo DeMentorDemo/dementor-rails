@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChatsController < ApplicationController
   before_action :authenticate_request!
 
@@ -9,5 +11,4 @@ class ChatsController < ApplicationController
       head :bad_request
     end
   end
-
 end

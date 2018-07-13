@@ -1,0 +1,25 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  TargetRubyVersion: 2.5.1
+  Exclude:
+    - db/schema.rb
+    - bin/**
+    - config/**/*
+
+Documentation:
+  Enabled: false
+
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: false
+
+Naming/FileName:
+  Exclude:
+    - Gemfile
+
+Metrics/MethodLength:
+  Exclude:
+    - db/migrate/**
+
+Metrics/LineLength:
+  Max: 120
