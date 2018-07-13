@@ -2,6 +2,9 @@ class User < ApplicationRecord
   devise :database_authenticatable,
          :validatable
 
+  has_many :messages
+  has_and_belongs_to_many :chats
+
   validates_presence_of :first_name, :last_name
 
   scope :contacts, -> (user) {where.not(id: user.id)}

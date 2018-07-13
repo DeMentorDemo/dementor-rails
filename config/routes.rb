@@ -8,4 +8,7 @@ Rails.application.routes.draw do
   get 'users/current_user' => 'users#current_user'
   get 'users/show/:id' => 'users#show'
   get 'users' => 'users#index'
+
+  # Chats
+  post 'chats/create' => 'chats#create'
 end
