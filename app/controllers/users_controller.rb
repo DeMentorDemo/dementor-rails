@@ -10,12 +10,7 @@ class UsersController < ApplicationController
 
   # POST users/sign_up
   def create
-    @user = User.new user_params
-    if @user.save
-      render json: { user: user_params }, status: :created
-    else
-      render json: { errors: @user.errors }, status: :unauthorized
-    end
+    render Users::Create.call user_params
   end
 
   # GET users/current_user
