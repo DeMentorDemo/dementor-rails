@@ -5,6 +5,6 @@ class ChatsController < ApplicationController
 
   # POST chats/create
   def create
-    head Chats::CreateChatWith.call @current_user, params[:user_id].to_i
+    head Chats::CreateWith.call @current_user, params[:user_id].to_i
   end
 end

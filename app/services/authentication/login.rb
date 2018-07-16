@@ -4,14 +4,9 @@ module Authentication
   class Login
     include Callable
 
-    def initialize(email, password)
-      @email = email
-      @password = password
-    end
-
     def call
-      user = User.find_for_database_authentication(email: @email)
-      if user&.valid_password?(@password)
+      user = User.find_for_database_authentication email: email
+      if user&.valid_password? password
         user.sign_in
         { json: token(user) }
       else
@@ -20,6 +15,13 @@ module Authentication
     end
 
     private
+
+    attr_reader :email, :password
+
+    def initialize(email, password)
+      @email = email
+      @password = password
+    end
 
     EXPIRATION_DAYS = 7
 
