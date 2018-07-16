@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::API
+  private
+
   attr_reader :current_user
 
-  protected
-
   def authenticate_request!
-    if !user_id_in_token?
-      render json: { errors: ['Not Authenticated'] }, status: :unauthorized
-    else
+    if user_id_in_token?
       @current_user = User.find(auth_token[:user_id])
+    else
+      render json: { errors: ['Not Authenticated'] }, status: :unauthorized
     end
   rescue JWT::ExpiredSignature
     render json: { errors: ['Auth token has expired'] }, status: :unauthorized
@@ -17,11 +17,8 @@ class ApplicationController < ActionController::API
     render json: { errors: ['JWT Token is Broken'] }, status: :unauthorized
   end
 
-  private
-
   def http_token
-    token = request.headers['Authorization']
-    @http_token ||= token&.split(' ')&.last
+    @http_token ||= request.headers['Authorization']&.split(' ')&.last
   end
 
   def auth_token
