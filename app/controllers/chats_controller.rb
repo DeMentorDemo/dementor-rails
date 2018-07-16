@@ -5,10 +5,6 @@ class ChatsController < ApplicationController
 
   # POST chats/create
   def create
-    if Chat.create_chat_with @current_user, params[:user_id].to_i
-      head :created
-    else
-      head :bad_request
-    end
+    head Chats::CreateChatWith.call @current_user, params[:user_id].to_i
   end
 end
