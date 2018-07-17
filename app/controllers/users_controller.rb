@@ -3,24 +3,25 @@
 class UsersController < ApplicationController
   before_action :authenticate_request!, except: [:create]
 
-  # GET users
+  # GET /users
   def index
     render json: User.contacts(@current_user).to_json, status: :ok
   end
 
-  # POST users/sign_up
+  # POST /users
   def create
     render Users::Create.call user_params
   end
 
-  # GET users/current_user
-  def current_user
-    render json: @current_user.to_json
+  # GET /users/:id
+  def show
+    p params
+    render json: User.find(params[:id].to_i).to_json
   end
 
-  # GET /users/show/:id
-  def show
-    render json: User.find(params[:id].to_i).to_json
+  # GET /current_user
+  def current_user
+    render json: @current_user.to_json
   end
 
   private

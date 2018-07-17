@@ -4,11 +4,10 @@ Rails.application.routes.draw do
   post 'auth/login' => 'authentication#login'
 
   # Users
-  post 'users/sign_up' => 'users#create'
-  get 'users/current_user' => 'users#current_user'
-  get 'users/show/:id' => 'users#show'
-  get 'users' => 'users#index'
+  resources :users, only: [:index, :create, :show]
+
+  get 'current_user' => 'users#current_user'
 
   # Chats
-  post 'chats/create' => 'chats#create'
+  resources :chats, only: [:create]
 end

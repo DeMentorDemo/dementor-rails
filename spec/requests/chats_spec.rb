@@ -10,10 +10,10 @@ describe 'Chats', type: :request do
     JsonWebToken.encode(user_id: current_user.id, exp: exp)
   end
 
-  describe 'POST chats/create' do
+  describe 'POST chats' do
     context 'with valid attributes' do
       it 'should create new chat' do
-        post '/chats/create', params: { user_id: chat_with_user.id }, headers: { Authorization: valid_token }
+        post '/chats', params: { user_id: chat_with_user.id }, headers: { Authorization: valid_token }
         expect(response).to be_created
       end
     end
