@@ -5,8 +5,8 @@ module Authentication
     include Callable
 
     def call
-      user = User.find_for_database_authentication email: email
-      if user&.valid_password? password
+      user = User.find_by email: email
+      if user&.authenticate password
         user.sign_in
         { json: token(user) }
       else

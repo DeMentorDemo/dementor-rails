@@ -15,7 +15,6 @@ class UsersController < ApplicationController
 
   # GET /users/:id
   def show
-    p params
     render json: User.find(params[:id].to_i).to_json
   end
 
