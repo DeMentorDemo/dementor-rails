@@ -29,13 +29,14 @@ describe 'Users', type: :request do
     context 'with valid attributes' do
       it 'should return current user from session' do
         get '/current_user', params: {}, headers: { Authorization: valid_token }
+        data = json['data']
+        attributes = data['attributes']
         expect(response).to be_success
-        expect(json).to have_key('id')
-        expect(json).to have_key('email')
-        expect(json).to have_key('first_name')
-        expect(json).to have_key('last_name')
-        expect(json).to have_key('created_at')
-        expect(json).to have_key('updated_at')
+        expect(data).to have_key('id')
+        expect(attributes).to have_key('email')
+        expect(attributes).to have_key('first_name')
+        expect(attributes).to have_key('last_name')
+        expect(attributes).to have_key('created_at')
       end
     end
 

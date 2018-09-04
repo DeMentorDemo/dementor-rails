@@ -16,12 +16,13 @@ class UsersController < ApplicationController
 
   # GET /users/:id
   def show
-    render json: User.find(params[:id].to_i).to_json
+    user = User.find params[:id].to_i
+    render json: UserSerializer.new(user).serialized_json
   end
 
   # GET /current_user
   def current_user
-    render json: @current_user.to_json
+    render json: UserSerializer.new(@current_user).serialized_json
   end
 
   private
