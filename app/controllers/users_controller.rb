@@ -5,7 +5,8 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    render json: User.contacts(@current_user).to_json, status: :ok
+    users = User.contacts(@current_user)
+    render json: UserSerializer.new(users).serialized_json, status: :ok
   end
 
   # POST /users
