@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :authenticate_request!, except: [:create]
+  skip_before_action :authenticate_request!, only: [:create]
 
   # GET /users
   def index
