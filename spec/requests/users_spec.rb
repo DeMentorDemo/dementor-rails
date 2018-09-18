@@ -34,9 +34,9 @@ describe 'Users', type: :request do
         expect(response).to be_success
         expect(data).to have_key('id')
         expect(attributes).to have_key('email')
-        expect(attributes).to have_key('first_name')
-        expect(attributes).to have_key('last_name')
-        expect(attributes).to have_key('created_at')
+        expect(attributes).to have_key('firstName')
+        expect(attributes).to have_key('lastName')
+        expect(attributes).to have_key('createdAt')
       end
     end
 

@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   get 'current_user' => 'users#current_user'
 
   # Chats
-  resources :chats, only: [:create]
+  resources :chats, only: [:index, :create]
 end
