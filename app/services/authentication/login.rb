@@ -27,6 +27,7 @@ module Authentication
 
     def token(user)
       return unless user&.id
+
       exp = EXPIRATION_DAYS.days.from_now.to_i
       { auth_token: JsonWebToken.encode(user_id: user.id, exp: exp) }
     end
