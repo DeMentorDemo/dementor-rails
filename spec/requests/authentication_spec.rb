@@ -10,7 +10,7 @@ describe 'Authentication', type: :request do
       it 'should return jwt token' do
         post '/auth/login', params: { email: user.email, password: user.password }
         payload = JsonWebToken.decode(json['auth_token'])
-        expect(response).to be_success
+        expect(response).to be_successful
         expect(payload).to have_key('user_id')
         expect(payload).to have_key('exp')
       end

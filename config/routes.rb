@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   post 'auth/login' => 'authentication#login'
 
   # Users
-  resources :users, only: [:index, :create, :show]
+  resources :users, only: [:index, :create, :update, :show]
 
-  get 'current_user' => 'users#current_user'
+  get 'current_user' => 'users#current'
 
   # Chats
   resources :chats, only: [:index, :create]

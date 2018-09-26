@@ -31,7 +31,7 @@ describe 'Users', type: :request do
         get '/current_user', params: {}, headers: { Authorization: valid_token }
         data = json['data']
         attributes = data['attributes']
-        expect(response).to be_success
+        expect(response).to be_successful
         expect(data).to have_key('id')
         expect(attributes).to have_key('email')
         expect(attributes).to have_key('firstName')
@@ -71,7 +71,7 @@ describe 'Users', type: :request do
   describe 'GET /users' do
     it 'should return all users except logged in' do
       get '/users', params: {}, headers: { Authorization: valid_token }
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 end
