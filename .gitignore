@@ -28,3 +28,6 @@ coverage
 .ruby-version
 .ruby-gemset
 tags
+
+# Ignore local storage files
+/storage/*

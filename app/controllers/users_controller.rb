@@ -5,8 +5,8 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    users = User.contacts(current_user)
-    render json: UserSerializer.new(users).serialized_json, status: :ok
+    users = User.with_attached_avatar.contacts(current_user)
+    render json: UserSerializer.new(users, avatar_url).serialized_json, status: :ok
   end
 
   # POST /users
@@ -25,12 +25,12 @@ class UsersController < ApplicationController
   # GET /users/:id
   def show
     user = User.find params[:id].to_i
-    render json: UserSerializer.new(user, avatar_url(user)).serialized_json
+    render json: UserSerializer.new(user, avatar_url).serialized_json
   end
 
   # GET /current_user
   def current
-    render json: UserSerializer.new(current_user, avatar_url(current_user)).serialized_json
+    render json: UserSerializer.new(current_user, avatar_url).serialized_json
   end
 
   private
@@ -39,7 +39,8 @@ class UsersController < ApplicationController
     params.require(:user).permit(:email, :first_name, :last_name, :password, :password_confirmation)
   end
 
-  def avatar_url(user)
-    user.avatar.attached? ? { params: { avatar_url: url_for(user.avatar) } } : {}
+  def avatar_url
+    url_callback = ->(attachment) { attachment.attached? ? url_for(attachment) : nil }
+    { params: { avatar_url: url_callback } }
   end
 end
