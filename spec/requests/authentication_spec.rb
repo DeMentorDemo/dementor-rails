@@ -8,7 +8,7 @@ describe 'Authentication', type: :request do
   describe 'POST /auth/login' do
     context 'with valid attributes' do
       it 'should return jwt token' do
-        post '/auth/login', params: { email: user.email, password: user.password }
+        post '/api/auth/login', params: { email: user.email, password: user.password }
         payload = JsonWebToken.decode(json['auth_token'])
         expect(response).to be_successful
         expect(payload).to have_key('user_id')
@@ -18,7 +18,7 @@ describe 'Authentication', type: :request do
 
     context 'with invalid attributes' do
       it 'should return auth error' do
-        post '/auth/login', params: { email: user.email, password: "#{user.password}spoil" }
+        post '/api/auth/login', params: { email: user.email, password: "#{user.password}spoil" }
         expect(response).to be_unauthorized
         expect(json).to have_key('errors')
       end

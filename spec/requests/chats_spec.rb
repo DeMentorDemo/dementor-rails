@@ -13,7 +13,7 @@ describe 'Chats', type: :request do
   describe 'POST chats' do
     context 'with valid attributes' do
       it 'should create new chat' do
-        post '/chats', params: { user_id: chat_with_user.id }, headers: { Authorization: valid_token }
+        post '/api/chats', params: { user_id: chat_with_user.id }, headers: { Authorization: valid_token }
         expect(response).to be_created
       end
     end
