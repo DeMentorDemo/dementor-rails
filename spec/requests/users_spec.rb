@@ -15,10 +15,10 @@ describe 'Users', type: :request do
       it 'should create new user' do
         users_count = User.count
         post '/api/users', params: { user: { email: user.email,
-                                         first_name: user.first_name,
-                                         last_name: user.last_name,
-                                         password: user.password,
-                                         password_confirmation: user.password_confirmation } }
+                                             first_name: user.first_name,
+                                             last_name: user.last_name,
+                                             password: user.password,
+                                             password_confirmation: user.password_confirmation } }
         expect(response).to be_created
         expect(User.count - users_count).to eq(1)
       end
