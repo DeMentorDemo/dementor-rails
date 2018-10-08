@@ -4,26 +4,27 @@ module Api
   class UsersController < ApplicationController
     skip_before_action :authenticate_request!, only: [:create]
 
-    # GET /users
+    # GET /api/users
     def index
       users = User.with_attached_avatar.contacts(current_user)
       render json: UserSerializer.new(users, avatar_url).serialized_json, status: :ok
     end
 
-    # POST /users
+    # POST /api/users
     def create
       render Users::Create.call user_params
     end
 
-    # PUT /users
+    # PUT /api/users
     def update
       user = User.find params[:id].to_i
       # user.update_attributes user_params
-      user.avatar.attach(params[:image]) if params[:image]
-      head :ok
+      avatar = user.avatar
+      avatar.attach(params[:image]) if params[:image]
+      render json: { avatar: url_for(avatar) }, status: :ok
     end
 
-    # GET /users/:id
+    # GET /api/users/:id
     def show
       user = User.find params[:id].to_i
       render json: UserSerializer.new(user, avatar_url).serialized_json

@@ -2,13 +2,13 @@
 
 module Api
   class ChatsController < ApplicationController
-    # GET /chats
+    # GET /api/chats
     def index
       chats = current_user.chats
       render json: ChatSerializer.new(chats).serialized_json, status: :ok
     end
 
-    # POST /chats
+    # POST /api/chats
     def create
       head Chats::CreateWith.call current_user, params[:user_id].to_i
     end
