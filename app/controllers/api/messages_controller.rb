@@ -11,7 +11,12 @@ module Api
     # POST /api/chats/:chat_id/messages
     def create
       message = Message.new message_params
-      head(message.save ? :created : :bad_request)
+      if message.save
+        ActionCable.server.broadcast 'messages', MessageSerializer.new(message).serializable_hash
+        head :created
+      else
+        head :bad_request
+      end
     end
 
     private

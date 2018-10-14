@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
     get 'current_user' => 'users#current'
 
+    # Serve websocket cable requests in-process
+    mount ActionCable.server => '/cable'
     resources :chats, only: [:index, :create] do
       resources :messages
     end
