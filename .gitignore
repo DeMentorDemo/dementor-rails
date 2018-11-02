@@ -31,3 +31,4 @@ tags
 
 # Ignore local storage files
 /storage/*
+dump.rdb

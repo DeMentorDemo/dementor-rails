@@ -13,4 +13,6 @@ Rails.application.routes.draw do
       resources :messages
     end
   end
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
 end

@@ -8,7 +8,7 @@ module Authentication
       user = User.find_by email: email
       if user&.authenticate password
         user.sign_in
-        { json: token(user) }
+        { json: token(user), status: :ok }
       else
         { json: { errors: ['Invalid Username/Password'] }, status: :unauthorized }
       end
